@@ -8,8 +8,13 @@ public class Device {
         this.status = "of";
     }
 
-    public abstract boolean setProperty(String property, String value);
-    public abstract String getInfo();
+    public boolean setProperty(String property, String value) {
+        return false;
+    }
+
+    public String getInfo() {
+        return null;
+    }
 
     public boolean validProtocol1(String protocol1) {
         return protocol1.equals("Wifi") || protocol1.equals("Bluetooth");

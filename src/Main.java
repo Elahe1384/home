@@ -1,15 +1,45 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        Scanner scanner = new Scanner(System.in);
+        SmartHomeSystem system = new SmartHomeSystem();
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
+        int q = Integer.parseInt(scanner.nextLine());
+        for (int i = 0; i < q; i++) {
+            String[] command = scanner.nextLine().split(" ");
+            String cmd = command[0];
+            String result;
+
+            switch (cmd) {
+                case "add_device":
+                    result = system.addDevice(command[1], command[2], command[3]);
+                    break;
+                case "set_device":
+                    result = system.setDevice(command[1], command[2], command[3]);
+                    break;
+                case "remove_device":
+                    result = system.removeDevice(command[1]);
+                    break;
+                case "list_devices":
+                    result = system.listDevices();
+                    break;
+                case "add_rule":
+                    result = system.addRule(command[1], command[2], command[3]);
+                    break;
+                case "check_rules":
+                    result = system.checkRules(command[1]);
+                    break;
+                case "list_rules":
+                    result = system.listRules();
+                    break;
+                default:
+                    result = "invalid command";
+            }
+
+            System.out.println(result);
         }
+
+        scanner.close();
     }
 }
